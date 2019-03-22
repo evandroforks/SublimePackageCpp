@@ -478,7 +478,7 @@ template <typename T = float, int a = 3, bool b = true>
                   /*                  ^ meta.template constant.numeric              */
                   /*                            ^ meta.template keyword.operator    */
                   /*                              ^ meta.template constant.language */
-struct Foo 
+struct Foo
 {
 
 /* <- meta.struct - meta.template */
@@ -515,7 +515,7 @@ template<class T, class U = T> class B { /* ... */ };
 /*                            ^ - meta.template            */
 template <class ...Types> class C { /* ... */ };
 
-// templates inside templates... it's templates all the way down 
+// templates inside templates... it's templates all the way down
 template<template<class> class P> class X { /* ... */ };
 /*      ^ meta.template punctuation                              */
 /*               ^ meta.template meta.template punctuation       */
@@ -615,7 +615,7 @@ int main() {
 
 // Example from section 14.2/4 of
 // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3690.pdf
-struct X 
+struct X
 {
     template <std::size_t>
     X* alloc();
@@ -623,12 +623,12 @@ struct X
     template <std::size_t>
     static X* adjust();
 };
-template <class T> 
-void f(T* p) 
+template <class T>
+void f(T* p)
 {
     // Be optimistic: scope it as a template member function call anyway.
     T* p1 = p->alloc<200>(); // ill-formed: < means less than
-    
+
     T* p2 = p->template alloc<200>(); // OK: < starts template argument list
     /*        ^ punctuation.accessor           */
     /*         ^ storage.type - variable.other */
@@ -636,7 +636,7 @@ void f(T* p)
 
     // Be optimistic: scope it as a template member function call anyway.
     T::adjust<100>(); // ill-formed: < means less than
-    
+
     T::template adjust<100>(); // OK: < starts template argument list
     /* <- - variable.function                    */
     /*^ punctuation.accessor                     */
@@ -658,16 +658,16 @@ void f()
     /* ^ - variable.function */
 
     x /**/ . /**/ foo <5> /**/ () /**/ ;
-    /*^^^^ comment.block */
-    /*     ^ punctuation.accessor */
+    /*^^^^ comment.block.documentation */
+    /*     ^ punctuation.accessor - comment.block.documentation*/
     /*            ^^^ meta.method-call variable.function */
     /*               ^ meta.method-call - variable.function */
     /*                ^ meta.method-call punctuation.section.generic.begin */
     /*                  ^ meta.method-call punctuation.section.generic.end */
-    /*                   ^ meta.method-call - punctuation - comment.block */
-    /*                    ^^^^ meta.method-call comment.block */
-    /*                        ^ meta.method-call - comment.block - punctuation */
-    /*                         ^^ meta.method-call punctuation - comment.block */
+    /*                   ^ meta.method-call - punctuation - comment.block.documentation */
+    /*                    ^^^^ meta.method-call comment.block.documentation */
+    /*                        ^ meta.method-call - comment.block.documentation - punctuation */
+    /*                         ^^ meta.method-call punctuation - comment.block.documentation */
     /*                           ^ - meta.method-call */
 };
 
@@ -1783,7 +1783,7 @@ public:
                                  /* ^ meta.method.constructor.initializer-list   */
                                  /*   ^ - meta.function-call - variable.function */
 private:
-    int var1, var2, var3, var4;    
+    int var1, var2, var3, var4;
 };
 
 class X {
