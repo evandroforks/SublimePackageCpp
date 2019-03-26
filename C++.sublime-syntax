@@ -203,26 +203,26 @@ contexts:
         - match: ""
           pop: true
     - match: /\*\*
-      scope: punctuation.definition.comment.c
+      scope: punctuation.definition.comment.c++
       push:
         - - match: \s*(?=\w)
             set: global-modifier
           - match: ""
             pop: true
-        - - meta_scope: comment.block.documentation.c
+        - - meta_scope: comment.block.documentation.c++
           - match: \*/
-            scope: punctuation.definition.comment.c
+            scope: punctuation.definition.comment.c++
             pop: true
     - match: /\*
-      scope: punctuation.definition.comment.c
+      scope: punctuation.definition.comment.c++
       push:
         - - match: \s*(?=\w)
             set: global-modifier
           - match: ""
             pop: true
-        - - meta_scope: comment.block.c
+        - - meta_scope: comment.block.c++
           - match: \*/
-            scope: punctuation.definition.comment.c
+            scope: punctuation.definition.comment.c++
             pop: true
     - include: early-expressions
     - match: ^\s*\b(extern)(?=\s+"C(\+\+)?")
