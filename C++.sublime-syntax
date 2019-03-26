@@ -205,14 +205,14 @@ contexts:
     - match: /\*\*
       scope: punctuation.definition.comment.c
       push:
-        - match: \s*(?=\w)
-          set: global-modifier
-        - match: ""
-          pop: true
-        - meta_scope: comment.block.documentation.c
-        - match: \*/
-          scope: punctuation.definition.comment.c
-          pop: true
+        - - match: \s*(?=\w)
+            set: global-modifier
+          - match: ""
+            pop: true
+        - - meta_scope: comment.block.documentation.c
+          - match: \*/
+            scope: punctuation.definition.comment.c
+            pop: true
     - match: /\*
       scope: punctuation.definition.comment.c
       push:
